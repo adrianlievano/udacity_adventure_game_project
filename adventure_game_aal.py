@@ -36,6 +36,10 @@ def knock_or_peer_check(items, animal):
     flag = item_check(items)
     #if user peers into cave again and has the sword
     #while (reply != '1' or reply != '2'):
+    while (reply != '1' or reply != '2'):
+        reply = input("Please enter 1 or 2.\n")
+        if (reply =='1' or reply == '2'):
+            break
 
     if (reply == '2' and flag == 0):
         print_pause("You peer cautiously into the cave.")
@@ -63,6 +67,10 @@ def knock_or_peer_check(items, animal):
     #elif (reply != '1' or reply != '2'):
     #        reply = input("(Please enter 1 or 2.)\n")
     #        print('HERE WE ARE')
+    #elif (reply != '1' or reply != '2'):
+        #reply = input("Please enter 1 or 2.)\n")
+        #print('here we are')
+        #knock_or_peer_check(items, animal)
 
     return reply, items
 
@@ -73,6 +81,12 @@ def fight_or_run_check(animal, reply, items):
     print_pause("The " + animal +  " attacks you!")
     flag = item_check(items)
     reply = input("Would you like to (1) fight or (2) run away?")
+
+    while (reply != '1' or reply != '2'):
+        reply = input("Please enter 1 or 2.\n")
+        if (reply =='1' or reply == '2'):
+            break
+
     print(flag)
 
     if (reply == '1' and flag == 1):
@@ -103,6 +117,15 @@ def fight_or_run_check(animal, reply, items):
     elif (reply == '2' and flag == 1):
             print_pause("You run back into the field. Luckily, you don't seem to have been followed.")
             knock_or_peer_check(items, animal)
+
+    #error proofing
+    ##elif (reply != '1' or reply != '2'):
+    #    reply = input("Please enter 1 or 2.\n")
+    #    print('here we are')
+        #knock_or_peer_check(items, animal)
+
+
+
 
 
 #This function runs the adventure game from start to finish
