@@ -22,9 +22,11 @@ def restart_game():
         play_game()
     elif (restart_var == 'n'):
         print_pause("Thanks for playing! See you next time.")
+    else:
+        print_pause("Thanks for playing! See you next time.")
 
 #This function checks if the user will knock of peer into the cave throughout the game
-def knock_or_peer_check(items):
+def knock_or_peer_check(items, animal):
     ##Code to refactor
     print_pause(" ")
     print_pause("Enter 1 to knock on the door of the house")
@@ -33,6 +35,7 @@ def knock_or_peer_check(items):
     reply = input("(Please enter 1 or 2.)\n")
     flag = item_check(items)
     #if user peers into cave again and has the sword
+    #while (reply != '1' or reply != '2'):
 
     if (reply == '2' and flag == 0):
         print_pause("You peer cautiously into the cave.")
@@ -42,15 +45,26 @@ def knock_or_peer_check(items):
         print_pause("You discard your silly old dagger and take the sword with you.")
         print_pause("You walk back out to the field.")
         items.append("Sword of Ogoroth")
-        knock_or_peer_check(items)
+        print(items)
+        knock_or_peer_check(items, animal) ##
 
     elif (reply == '2' and flag == 1):
         print_pause("You peer cautiously into the cave.")
         print_pause("You've been here before, and gotten all the good stuff. It's just an empty cave now.")
         print_pause("You walk back out to the field.")
-        knock_or_peer_check(items)
+        knock_or_peer_check(items, animal)
 
-    return reply
+    elif (reply == '1' and flag == 1):
+        fight_or_run_check(animal, reply, items)
+
+    elif (reply == '1' and flag == 0):
+        fight_or_run_check(animal, reply, items)
+
+    #elif (reply != '1' or reply != '2'):
+    #        reply = input("(Please enter 1 or 2.)\n")
+    #        print('HERE WE ARE')
+
+    return reply, items
 
 def fight_or_run_check(animal, reply, items):
     print_pause("You approach the door of the house.")
@@ -58,13 +72,15 @@ def fight_or_run_check(animal, reply, items):
     print_pause("Eep! This is the " + animal + "'s" + " house!")
     print_pause("The " + animal +  " attacks you!")
     flag = item_check(items)
+    reply = input("Would you like to (1) fight or (2) run away?")
+    print(flag)
 
     if (reply == '1' and flag == 1):
         print_pause("As the wicked " + animal + " moves to attack, you unsheath your new sword.")
         print_pause("The Sword of Ogoroth shines brightly in your hand as you brace yourself for the attack.")
         print_pause("But the wicked " + animal + " takes one look at your shiny new toy and runs away!")
         print_pause("You have rid the town of the wicked " + animal + " You are victorious!")
-        break
+        restart_game()
 
     elif ((reply == '1' and flag == 0)):
         print_pause("You feel a bit under-prepared for this, what with only having a tiny dagger.")
@@ -78,27 +94,28 @@ def fight_or_run_check(animal, reply, items):
 
         elif (reply == '2'):
             print_pause("You run back into the field. Luckily, you don't seem to have been followed.")
-            knock_or_peer_check(items)
+            knock_or_peer_check(items, animal)
+
+    elif (reply == '2' and flag == 0):
+            print_pause("You run back into the field. Luckily, you don't seem to have been followed.")
+            knock_or_peer_check(items, animal)
+
+    elif (reply == '2' and flag == 1):
+            print_pause("You run back into the field. Luckily, you don't seem to have been followed.")
+            knock_or_peer_check(items, animal)
 
 
 #This function runs the adventure game from start to finish
 def play_game():
     items = []
-    animal_bases = ["dragon", "fairie", "gorgon"]
+    animal_bases = ["dragon", "fairie", "gorgon", "pirate"]
     animal = random.choice(animal_bases)
     print_pause("You find yourself standing in an open field, filled with grass and yellow wildflowers.")
     print_pause("Rumor has it that a " + animal + " is somewhere around here, and has been terrifying the nearby village." )
     print_pause("In front of you is a dark house.")
     print_pause("To your right is a dark cave.")
     items.append('dagger')
+    knock_or_peer_check(items, animal)
 
-    while True:
-        reply = knock_or_peer_check(items)
-        fight_or_run_check(animal, reply, items)
-        #reply = knock_or_peer_check(items)
-
-    #need to run in a loop unil it wins
-
-#Initialize Game
 
 play_game()
