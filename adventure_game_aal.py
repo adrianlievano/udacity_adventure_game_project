@@ -98,8 +98,8 @@ def fight_or_run_check(animal, reply, items):
         restart_game()
 
     elif ((reply == '1' and flag == 0)):
-        print_pause("You feel a bit under-prepared for this, what with only""ha
-                    ving a tiny dagger.")
+        print_pause("You feel a bit under-prepared for this, what with only"
+        "having a tiny dagger.")
         reply = input("Would you like to (1) fight or (2) run away?")
 
         if (reply == '1'):
@@ -109,18 +109,18 @@ def fight_or_run_check(animal, reply, items):
             restart_game()
 
         elif (reply == '2'):
-            print_pause("You run back into the field. Luckily, you don't seem""
-                        to have been followed.")
+            print_pause("You run back into the field. Luckily, you don't seem"
+                        "to have been followed.")
             knock_or_peer_check(items, animal)
 
     elif (reply == '2' and flag == 0):
-            print_pause("You run back into the field. Luckily, you don't seem""
-                        to have been followed.")
+            print_pause("You run back into the field. Luckily, you don't seem"
+                        "to have been followed.")
             knock_or_peer_check(items, animal)
 
     elif (reply == '2' and flag == 1):
-            print_pause("You run back into the field. Luckily, you don't seem""
-                        to have been followed.")
+            print_pause("You run back into the field. Luckily, you don't seem"
+                        "to have been followed.")
             knock_or_peer_check(items, animal)
 
 
